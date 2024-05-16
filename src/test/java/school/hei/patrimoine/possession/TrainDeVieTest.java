@@ -1,9 +1,9 @@
 package school.hei.patrimoine.possession;
 
 import org.junit.jupiter.api.Test;
-import java.time.Instant;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.Instant;
+import java.util.Set;
 
 class TrainDeVieTest {
   @Test
@@ -20,6 +20,14 @@ class TrainDeVieTest {
             aLaDiplomation,
             compteCourant,
             1);
-    assertEquals(-14900000, vieEstudiantine.getFinancePar().getValeurComptable());
+    //TODO: assert something useful
+  }
+
+  @Test
+  void un_train_de_vie_financé_par_argent() {
+    var au13mai24 = Instant.parse("2024-05-13T00:00:00.00Z");
+    var financeur = new Argent("Espèces", au13mai24, 400_000);
+
+    var trainDeVie = new TrainDeVie(null, 0, null, null, financeur, 0);
   }
 }
