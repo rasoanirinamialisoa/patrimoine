@@ -14,6 +14,9 @@ public sealed abstract class Possession permits
   protected final Instant t;
   protected final int valeurComptable;
 
-  public abstract int valeurComptableFuture(Instant tFutur);
+  public final int valeurComptableFuture(Instant tFutur) {
+    return projectionFuture(tFutur).getValeurComptable();
+  }
 
+  public abstract Possession projectionFuture(Instant tFutur);
 }

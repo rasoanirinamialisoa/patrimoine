@@ -5,10 +5,17 @@ import school.hei.patrimoine.possession.Possession;
 
 import java.time.Instant;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toSet;
 
 public record Patrimoine(
+<<<<<<< HEAD
         Personne possesseur, Instant t, Set<Possession> possessions) {
 
+=======
+    Personne possesseur, Instant t, Set<Possession> possessions) {
+>>>>>>> 700f6b2cdfac3f3fed9215db5c3398507ef69e8a
   public int getValeurComptable() {
     if (possessions.isEmpty()) {
       return 0;
@@ -16,5 +23,12 @@ public record Patrimoine(
     return possessions.stream()
             .mapToInt(Possession::getValeurComptable)
             .sum();
+  }
+
+  public Patrimoine projectionFuture(Instant tFutur) {
+    return new Patrimoine(
+        possesseur,
+        tFutur,
+        possessions.stream().map(p -> p.projectionFuture(tFutur)).collect(toSet()));
   }
 }
